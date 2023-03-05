@@ -1,0 +1,4 @@
+
+fpython:S2208"GImport only needed names or import the module and then use its members.(ÃáÅ8¸ß‘þê0
+\python:S112A">Replace this generic exception class with a more specific one.(á¶À™8¸ß‘þê0
+=python:S125F"Remove this commented out code.(«£Œå8“Þ–þê0
