@@ -1,7 +1,7 @@
 from seedwork.aplicacion.dto import Mapeador as AppMap
 from seedwork.dominio.repositorios import Mapeador as RepMap
-# from modulos.drivers.dominio.entidades import Reserva, Aeropuerto
-from modulos.drivers.dominio.objetos_valor import Ruta, Orden, Ubicacion, ZonaEnum
+from modulos.drivers.dominio.entidades import Ruta
+from modulos.drivers.dominio.objetos_valor import Orden, Ubicacion, ZonaEnum, TipoOrdenEnum
 from .dto import RutaDTO, UbicacionDTO, OrdenDTO
 
 from datetime import datetime
@@ -13,6 +13,7 @@ class MapeadorRutaDTOJson(AppMap):
         for orden in ruta.get('ordenes', list()):
             ordenes.append(
                 OrdenDTO(
+                    id=orden.get('id'),
                     origen=self._procesar_ubicacion(orden.get('origen')),
                     destino=self._procesar_ubicacion(orden.get('destino')),
                     tipo=orden.get('tipo'),
@@ -41,29 +42,23 @@ class MapeadorRutaDTOJson(AppMap):
 class MapeadorRuta(RepMap):
     _FORMATO_FECHA = '%Y-%m-%dT%H:%M:%SZ'
 
-    def _procesar_ruta(self, ruta_dto: RutaDTO) -> Ruta:
+    def _procesar_ruta(self, ruta_dto: RutaDTO) -> list[Orden]:
         ordenes: list[Orden] = list()
         for orden in ruta_dto.ordenes:
             ordenes.append(
                 Orden(
+                    id=orden.id,
                     origen=Ubicacion(orden.origen.lat, orden.origen.lon),
                     destino=Ubicacion(orden.destino.lat, orden.destino.lon),
-                    tipo=orden.tipo,
+                    tipo=TipoOrdenEnum(orden.tipo),
                     parada=orden.parada
                 )
             )
 
-        return Ruta(
-            fecha_creacion=datetime.strptime(ruta_dto.fecha_creacion, self._FORMATO_FECHA)  ,
-            fecha_actualizacion=datetime.strptime(ruta_dto.fecha_actualizacion,self._FORMATO_FECHA),
-            ordenes=ordenes,
-            zona=ZonaEnum(ruta_dto.zona),
-            hora_salida=datetime.strptime(ruta_dto.hora_salida, self._FORMATO_FECHA),
-            tiempo_estimado=ruta_dto.tiempo_estimado
-        )
+        return ordenes
 
     def obtener_tipo(self) -> type:
-        return Reserva.__class__
+        return Ruta.__class__
 
     def entidad_a_dto(self, entidad: Ruta) -> RutaDTO:
 
@@ -88,4 +83,14 @@ class MapeadorRuta(RepMap):
         )
 
     def dto_a_entidad(self, dto: RutaDTO) -> Ruta:
-        return self._procesar_ruta(dto)
+        return Ruta(
+            fecha_creacion=datetime.now(),
+            fecha_actualizacion=datetime.now(),
+            ordenes=self._procesar_ruta(dto),
+            zona=ZonaEnum(dto.zona),
+            hora_salida=datetime.strptime(dto.hora_salida, self._FORMATO_FECHA),
+            tiempo_estimado=dto.tiempo_estimado
+        )
+
+
+

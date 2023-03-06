@@ -29,13 +29,8 @@ class Ruta(AgregacionRaiz):
     tiempo_estimado: int = field(default=0)
 
     def asignar_ruta(self, ruta: Ruta):
-        self.id = uuid.uuid4()
-        self.id_driver = ruta.id_driver
+        self.id_driver = uuid.uuid4()  # TODO: Asignar id_driver mas cercano
         self.estado = ov.EstadoRuta.ASIGNADA
-        self.ordenes = ruta.ordenes
-        self.zona = ruta.zona
-        self.hora_salida = ruta.hora_salida
-        self.tiempo_estimado = ruta.tiempo_estimado
         self.fecha_actualizacion = datetime.datetime.now()
 
         self.agregar_evento(RutaAsignada(

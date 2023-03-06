@@ -82,11 +82,11 @@ services:
       - metadataStoreUrl=zk:zookeeper:2181
       - zookeeperServers=zookeeper:2181
       - clusterName=cluster-a
-      - managedLedgerDefaultEnsembleSize=1
-      - managedLedgerDefaultWriteQuorum=1
-      - managedLedgerDefaultAckQuorum=1
+      - managedLedgerDefaultEnsembleSize=2
+      - managedLedgerDefaultWriteQuorum=2
+      - managedLedgerDefaultAckQuorum=2
       - advertisedAddress=broker
-      - advertisedListeners=external:pulsar://broker:6650
+      - advertisedListeners=external:pulsar://127.0.0.1:6650
     depends_on:
       zookeeper:
         condition: service_healthy
@@ -118,12 +118,12 @@ services:
       - '3306:3306'
     volumes:
       - ./data/mysql:/var/lib/mysql
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
   # Servicios de AeroAlpes
   aeroalpes:
     container_name: aeroalpes
     hostname: aeroalpes
-    image: aeroalpes/flask 
+    image: aeroalpes/flask
     profiles: ["aeroalpes", "monolito","svc"]
     networks:
       - sidecar
@@ -152,12 +152,12 @@ services:
       - PULSAR_ADDRESS=broker
     ports:
       - "50051:50051"
-  
+
   # Servicios de Notificación
   notificacion:
     container_name: notificacion
     hostname: notificacion
-    image: aeroalpes/notificacion 
+    image: aeroalpes/notificacion
     profiles: ["aeroalpes", "notificacion"]
     depends_on:
       - aeroalpes
@@ -171,7 +171,7 @@ services:
   ui:
     container_name: ui
     hostname: ui
-    image: aeroalpes/ui 
+    image: aeroalpes/ui
     profiles: ["aeroalpes", "ui"]
     depends_on:
       - aeroalpes

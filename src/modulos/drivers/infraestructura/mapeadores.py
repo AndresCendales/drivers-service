@@ -48,11 +48,11 @@ class MapadeadorEventosRuta(Mapeador):
                 ruta_id=str(evento.ruta_id),
                 driver_id=str(evento.driver_id),
                 estado=str(evento.estado),
-                fecha_creacion=int(unix_time_millis(evento.fecha_creacion))
+                fecha_creacion=int(unix_time_millis(evento.fecha_evento))
             )
             evento_integracion = EventoRutaAsignada(id=str(evento.id))
             evento_integracion.id = str(evento.id)
-            evento_integracion.time = int(unix_time_millis(evento.fecha_creacion))
+            evento_integracion.time = int(unix_time_millis(evento.fecha_evento))
             evento_integracion.specversion = str(version)
             evento_integracion.type = 'RutaAsignada'
             evento_integracion.datacontenttype = 'AVRO'

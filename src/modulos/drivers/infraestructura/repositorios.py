@@ -65,23 +65,22 @@ class RepositorioEventosRutasSQLAlchemy(RepositorioEventosRutas):
         raise NotImplementedError
 
     def agregar(self, evento):
-        raise NotImplementedError
-        # reserva_evento = self.fabrica_vuelos.crear_objeto(evento, MapadeadorEventosReserva())
-        #
-        # parser_payload = JsonSchema(reserva_evento.data.__class__)
-        # json_str = parser_payload.encode(reserva_evento.data)
-        #
-        # evento_dto = EventosReserva()
-        # evento_dto.id = str(evento.id)
-        # evento_dto.id_entidad = str(evento.id_reserva)
-        # evento_dto.fecha_evento = evento.fecha_creacion
-        # evento_dto.version = str(reserva_evento.specversion)
-        # evento_dto.tipo_evento = evento.__class__.__name__
-        # evento_dto.formato_contenido = 'JSON'
-        # evento_dto.nombre_servicio = str(reserva_evento.service_name)
-        # evento_dto.contenido = json_str
-        #
-        # db.session.add(evento_dto)
+        asignacion_evento = self.fabrica_vuelos.crear_objeto(evento, MapadeadorEventosRuta())
+
+        parser_payload = JsonSchema(asignacion_evento.data.__class__)
+        json_str = parser_payload.encode(asignacion_evento.data)
+
+        evento_dto = EventosAsignacion()
+        evento_dto.id = str(evento.id)
+        evento_dto.id_entidad = str(evento.id)
+        evento_dto.fecha_evento = evento.fecha_evento
+        evento_dto.version = str(asignacion_evento.specversion)
+        evento_dto.tipo_evento = evento.__class__.__name__
+        evento_dto.formato_contenido = 'JSON'
+        evento_dto.nombre_servicio = str(asignacion_evento.service_name)
+        evento_dto.contenido = json_str
+
+        db.session.add(evento_dto)
 
     def actualizar(self, reserva: Ruta):
         raise NotImplementedError

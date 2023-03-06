@@ -53,7 +53,8 @@ def suscribirse_a_comandos(app=None):
             topic='comandos-reserva',
             consumer_type=_pulsar.ConsumerType.Shared,
             subscription_name='aeroalpes-sub-comandos',
-            schema=AvroSchema(ComandoAsignarDriver))
+            schema=AvroSchema(ComandoAsignarDriver)
+        )
 
         while True:
             mensaje = consumidor.receive()

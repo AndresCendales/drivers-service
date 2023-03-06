@@ -4,9 +4,10 @@ En este archivo usted encontrará las diferentes fábricas para crear
 objetos complejos del dominio de drivers
 
 """
+import uuid
 
 from .entidades import Ruta
-from .reglas import RutaValida
+from .reglas import HoraSalida
 from .excepciones import TipoObjetoNoExisteEnDominioDriversExcepcion
 from seedwork.dominio.repositorios import Mapeador, Repositorio
 from seedwork.dominio.fabricas import Fabrica
@@ -23,8 +24,7 @@ class _FabricaRuta(Fabrica):
         else:
             ruta: Ruta = mapeador.dto_a_entidad(obj)
 
-            self.validar_regla(RutaValida(ruta))
-
+            self.validar_regla(HoraSalida(ruta))
             return ruta
 
 

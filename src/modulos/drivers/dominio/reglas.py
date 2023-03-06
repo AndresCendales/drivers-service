@@ -9,10 +9,11 @@ from .objetos_valor import Ruta
 from datetime import datetime
 
 
-class RutaValida(ReglaNegocio):
+class HoraSalida(ReglaNegocio):
     ruta: Ruta
 
-    def __init__(self, ruta, mensaje='La ruta propuesta es incorrecta'):
+    def __init__(self, ruta,
+                 mensaje='La ruta propuesta no puede asignarse porque su hora de salida es menor a la hora actual'):
         super().__init__(mensaje)
         self.ruta = ruta
 

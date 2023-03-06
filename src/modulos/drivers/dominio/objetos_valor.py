@@ -24,8 +24,7 @@ class EstadoRuta(str, Enum):
     ASIGNADA = 'asignada'
 
 
-@dataclass(frozen=True)
-class TipoOrdenEnum(Enum):
+class TipoOrdenEnum(str,Enum):
     TARJETA = 'tarjeta'
     RESTAURANTE = 'restaurante'
     MERCADO = 'mercado'
