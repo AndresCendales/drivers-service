@@ -69,7 +69,7 @@ class RepositorioEventosRutasSQLAlchemy(RepositorioEventosRutas):
 
         parser_payload = JsonSchema(asignacion_evento.data.__class__)
         json_str = parser_payload.encode(asignacion_evento.data)
-
+        print(json_str)
         evento_dto = EventosAsignacion()
         evento_dto.id = str(evento.id)
         evento_dto.id_entidad = str(evento.id)

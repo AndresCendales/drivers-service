@@ -6,6 +6,7 @@ from alpesonline.modulos.drivers.dominio.entidades import Ruta
 from alpesonline.seedwork.infraestructura.utils import millis_a_datetime
 import logging
 import traceback
+from datetime import datetime
 from abc import ABC, abstractmethod
 
 
@@ -42,7 +43,7 @@ class ProyeccionAsignacionesLista(ProyeccionAsignacion):
                 id = self.id_ruta,
                 id_driver=self.id_driver,
                 estado=self.estado,
-                hora_salida=""
+                hora_salida=datetime.now(),
             )
         )
 
@@ -70,6 +71,7 @@ def ejecutar_proyeccion_reserva(proyeccion, app=None):
             handler = ProyeccionReservaHandler()
             handler.handle(proyeccion)
 
-    except:
+    except Exception as e:
         traceback.print_exc()
         logging.error('ERROR: Persistiendo!')
+        logging.error(e)
