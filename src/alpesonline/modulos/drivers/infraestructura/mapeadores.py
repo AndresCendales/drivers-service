@@ -10,7 +10,7 @@ from alpesonline.seedwork.infraestructura.utils import unix_time_millis
 from alpesonline.modulos.drivers.dominio.entidades import Ruta
 from alpesonline.modulos.drivers.dominio.eventos import RutaAsignada, EventoRutaAsignada
 
-from .dto import Ruta as RutaDTO
+from .dto import Asignacion as RutaDTO
 from .excepciones import NoExisteImplementacionParaTipoFabricaExcepcion
 
 

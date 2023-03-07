@@ -9,7 +9,7 @@ from alpesonline.config.db import db
 from alpesonline.modulos.drivers.dominio.repositorios import RepositorioRutas, RepositorioEventosRutas
 from alpesonline.modulos.drivers.dominio.entidades import Ruta
 from alpesonline.modulos.drivers.dominio.fabricas import FabricaRutas
-from .dto import Ruta as RutaDTO
+from .dto import Asignacion as RutaDTO
 from .dto import EventosAsignacion
 from .mapeadores import MapeadorRuta, MapadeadorEventosRuta
 from uuid import UUID

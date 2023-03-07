@@ -1,10 +1,13 @@
-CREATE TABLE usuarios_legado(  
-    id int NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'Llave primaria',
-    nombres VARCHAR(255),
-    apellidos VARCHAR(255),
-    direccion VARCHAR(255),
-    telefono VARCHAR(255),
-    email VARCHAR(255),
-    password VARCHAR(255)
+CREATE TABLE asignaciones(
+    id varchar(36) NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'Llave primaria',
+    fecha_creacion DATETIME NOT NULL COMMENT 'Fecha de creación del registro',
+    fecha_actualizacion DATETIME NOT NULL COMMENT 'Fecha de actualización del registro',
+    zona VARCHAR(255),
+    hora_salida DATETIME NOT NULL COMMENT 'Hora de salida del usuario',
+    driver_id VARCHAR(36),
+);
 
-) COMMENT 'Tabla legado de los usuarios';
+CREATE TABLE drivers (
+    id varchar(36) NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'Llave primaria',
+    nombre VARCHAR(255),
+)

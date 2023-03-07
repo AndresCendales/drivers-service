@@ -24,10 +24,10 @@ class Driver(db.Model):
 
     id = db.Column(db.String(36), primary_key=True, default=str(uuid.uuid4()))
     nombre = db.Column(db.String(200), nullable=False)
-    rutas =  db.relationship('Ruta')
+    rutas =  db.relationship('asignaciones')
 
-class Ruta(db.Model):
-    __tablename__ = "rutas"
+class Asignacion(db.Model):
+    __tablename__ = "asignaciones"
     id = db.Column(db.String(36), primary_key=True, default=str(uuid.uuid4()))
     fecha_creacion = db.Column(db.DateTime, nullable=False, primary_key=True)
     fecha_actualizacion = db.Column(db.DateTime, nullable=False, primary_key=True)

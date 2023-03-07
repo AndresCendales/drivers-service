@@ -1,7 +1,7 @@
 from alpesonline.seedwork.infraestructura.vistas import Vista
 from alpesonline.modulos.drivers.dominio.entidades import Ruta
 from alpesonline.config.db import db
-from .dto import Ruta as RutaDTO
+from .dto import Asignacion as RutaDTO
 
 class VistaRuta(Vista):
     def obtener_por(id=None, estado=None, id_cliente=None, **kwargs) -> [Ruta]:
