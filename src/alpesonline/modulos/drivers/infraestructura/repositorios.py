@@ -9,7 +9,7 @@ from alpesonline.config.db import db
 from alpesonline.modulos.drivers.dominio.repositorios import RepositorioRutas, RepositorioEventosRutas
 from alpesonline.modulos.drivers.dominio.entidades import Ruta
 from alpesonline.modulos.drivers.dominio.fabricas import FabricaRutas
-from .dto import Asignacion as RutaDTO
+from .dto import Asignacion as AsignacionDTO
 from .dto import EventosAsignacion
 from .mapeadores import MapeadorRuta, MapadeadorEventosRuta
 from uuid import UUID
@@ -26,7 +26,7 @@ class RepositorioRutasSQLAlchemy(RepositorioRutas):
         return self._fabrica_vuelos
 
     def obtener_por_id(self, id: UUID) -> Ruta:
-        reserva_dto = db.session.query(RutaDTO).filter_by(id=str(id)).one()
+        reserva_dto = db.session.query(AsignacionDTO).filter_by(id=str(id)).one()
         return self.fabrica_vuelos.crear_objeto(reserva_dto, MapeadorRuta())
 
     def obtener_todos(self) -> list[Ruta]:

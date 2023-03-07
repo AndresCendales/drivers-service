@@ -7,19 +7,19 @@ from alpesonline.modulos.drivers.aplicacion.mapeadores import MapeadorRuta
 
 
 @dataclass
-class ObtenerReserva(Query):
+class ObtenerRutaAsignada(Query):
     id: str
 
 
 class ObtenerReservaHandler(ReservaQueryBaseHandler):
 
-    def handle(self, query: ObtenerReserva) -> QueryResultado:
+    def handle(self, query: ObtenerRutaAsignada) -> QueryResultado:
         vista = self.fabrica_vista.crear_objeto(Ruta)
         reserva = self.fabrica_vuelos.crear_objeto(vista.obtener_por(id=query.id)[0], MapeadorRuta())
         return QueryResultado(resultado=reserva)
 
 
-@query.register(ObtenerReserva)
-def ejecutar_query_obtener_reserva(query: ObtenerReserva):
+@query.register(ObtenerRutaAsignada)
+def ejecutar_query_obtener_reserva(query: ObtenerRutaAsignada):
     handler = ObtenerReservaHandler()
     return handler.handle(query)
