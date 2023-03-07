@@ -4,11 +4,10 @@ En este archivo usted encontrará las diferentes pruebas de validacióm para las
 
 """
 
-from seedwork.dominio.excepciones import (
+from alpesonline.seedwork.dominio.excepciones import (
     ExcepcionDominio, 
     IdDebeSerInmutableExcepcion, 
-    ReglaNegocioExcepcion,
-    ExcepcionFabrica)
+    ReglaNegocioExcepcion)
 import pytest
 
 """

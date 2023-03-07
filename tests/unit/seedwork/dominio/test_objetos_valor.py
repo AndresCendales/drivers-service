@@ -7,14 +7,12 @@ En este archivo usted encontrará las diferentes pruebas de validación para los
 from dataclasses import dataclass, field
 import pytest
 from datetime import datetime
-from seedwork.dominio.objetos_valor import (
+from alpesonline.seedwork.dominio.objetos_valor import (
     ObjetoValor,
     Codigo,
     Ruta,
     Pais,
     Ciudad)
-from seedwork.dominio.excepciones import IdDebeSerInmutableExcepcion
-
 
 """
     Clases de Soporte para validar el seedwork

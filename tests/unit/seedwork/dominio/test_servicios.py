@@ -4,8 +4,7 @@ En este archivo usted encontrará las diferentes pruebas de validacióm para los
 
 """
 
-import pytest
-from seedwork.dominio.servicios import Servicio
+from alpesonline.seedwork import Servicio
 
 
 """
