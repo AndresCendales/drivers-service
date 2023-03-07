@@ -7,7 +7,7 @@ from alpesonline.modulos.drivers.infraestructura.schema.v1.eventos import Evento
 from alpesonline.modulos.drivers.infraestructura.schema.v1.comandos import ComandoAsignarDriver
 
 
-from alpesonline.modulos.drivers.infraestructura.proyecciones import ProyeccionReservasLista
+from alpesonline.modulos.drivers.infraestructura.proyecciones import ProyeccionAsignacionesLista
 from alpesonline.seedwork.infraestructura.proyecciones import ejecutar_proyeccion
 from alpesonline.seedwork.infraestructura import utils
 
@@ -29,9 +29,16 @@ def suscribirse_a_eventos(app=None):
             datos = mensaje.value().data
             print(f'Evento recibido: {datos}')
 
-            # TODO Identificar el tipo de CRUD del evento: Creacion, actualización o eliminación.
-            # ejecutar_proyeccion(ProyeccionReservasTotales(datos.fecha_creacion, ProyeccionReservasTotales.ADD), app=app)
-            ejecutar_proyeccion(ProyeccionReservasLista(datos.id_reserva, datos.id_cliente, datos.estado, datos.fecha_creacion, datos.fecha_creacion), app=app)
+            ejecutar_proyeccion(
+                ProyeccionAsignacionesLista(
+                    datos.ruta_id,
+                    datos.driver_id,
+                    datos.estado,
+                    datos.fecha_creacion,
+                    datos.fecha_creacion
+                ),
+                app=app
+            )
             
             consumidor.acknowledge(mensaje)     
 
