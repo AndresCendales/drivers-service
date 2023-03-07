@@ -42,23 +42,3 @@ class Ruta(AgregacionRaiz):
         ))
         # TODO Agregar evento de compensación
 
-    # def aprobar_reserva(self):
-    #     self.estado = ov.EstadoReserva.APROBADA
-    #     self.fecha_actualizacion = datetime.datetime.now()
-    #
-    #     self.agregar_evento(ReservaAprobada(self.id, self.fecha_actualizacion))
-    #     # TODO Agregar evento de compensación
-    #
-    # def cancelar_reserva(self):
-    #     self.estado = ov.EstadoReserva.CANCELADA
-    #     self.fecha_actualizacion = datetime.datetime.now()
-    #
-    #     self.agregar_evento(ReservaCancelada(self.id, self.fecha_actualizacion))
-    #     # TODO Agregar evento de compensación
-    #
-    # def pagar_reserva(self):
-    #     self.estado = ov.EstadoReserva.PAGADA
-    #     self.fecha_actualizacion = datetime.datetime.now()
-    #
-    #     self.agregar_evento(ReservaPagada(self.id, self.fecha_actualizacion))
-    #     # TODO Agregar evento de compensación

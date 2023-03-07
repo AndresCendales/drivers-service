@@ -30,14 +30,21 @@ class ProyeccionAsignacionesLista(ProyeccionAsignacion):
 
         fabrica_repositorio = FabricaRepositorio()
         repositorio = fabrica_repositorio.crear_objeto(RepositorioRutas)
-
+        print(f"ejecutnado proyeccion")
+        
+        print(self.id_ruta)
+        print(self.id_driver)
+        print(self.estado)
+        print(self.fecha_creacion)
+        print(self.fecha_actualizacion)
         repositorio.agregar(
             Ruta(
-                id=self.id_ruta,
+                id = self.id_ruta,
                 id_driver=self.id_driver,
                 estado=self.estado,
-                fecha_creacion=self.fecha_creacion,
-                fecha_actualizacion=self.fecha_actualizacion))
+                hora_salida=""
+            )
+        )
 
         db.session.commit()
 
