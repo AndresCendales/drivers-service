@@ -6,9 +6,7 @@ from flask import request, session
 from flask import Response
 from alpesonline.modulos.drivers.aplicacion.mapeadores import MapeadorRutaDTOJson
 from alpesonline.seedwork.aplicacion.comandos import ejecutar_commando
-from alpesonline.seedwork.aplicacion.queries import ejecutar_query
 from alpesonline.modulos.drivers.aplicacion.comandos.crear_reserva import AsignarRuta
-from alpesonline.modulos.drivers.aplicacion.queries.obtener_reserva import ObtenerRutaAsignada
 
 bp = api.crear_blueprint('drivers', '/drivers')
 
