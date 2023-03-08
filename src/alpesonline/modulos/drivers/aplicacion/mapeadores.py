@@ -3,7 +3,7 @@ from alpesonline.seedwork.dominio.repositorios import Mapeador as RepMap
 from alpesonline.modulos.drivers.dominio.entidades import Ruta
 from alpesonline.modulos.drivers.dominio.objetos_valor import Orden, Ubicacion, ZonaEnum, TipoOrdenEnum
 from .dto import RutaDTO, UbicacionDTO, OrdenDTO
-
+import logging
 from datetime import datetime
 
 
@@ -44,17 +44,19 @@ class MapeadorRuta(RepMap):
 
     def _procesar_ruta(self, ruta_dto: RutaDTO) -> list[Orden]:
         ordenes: list[Orden] = list()
-        for orden in ruta_dto.ordenes:
-            ordenes.append(
-                Orden(
-                    id=orden.id,
-                    origen=Ubicacion(orden.origen.lat, orden.origen.lon),
-                    destino=Ubicacion(orden.destino.lat, orden.destino.lon),
-                    tipo=TipoOrdenEnum(orden.tipo),
-                    parada=orden.parada
+        try:
+            for orden in ruta_dto.ordenes:
+                ordenes.append(
+                    Orden(
+                        id=orden.id,
+                        origen=Ubicacion(orden.origen.lat, orden.origen.lon),
+                        destino=Ubicacion(orden.destino.lat, orden.destino.lon),
+                        tipo=TipoOrdenEnum(orden.tipo),
+                        parada=orden.parada
+                    )
                 )
-            )
-
+        except Exception as e:
+            logging.error(e.__str__())
         return ordenes
 
     def obtener_tipo(self) -> type:

@@ -39,8 +39,7 @@ def asignar_ruta_comando():
 def dar_reserva_usando_query(id=None):
     if id:
         query_resultado = ejecutar_query(ObtenerRutaAsignada(id))
-        map_reserva = MapeadorReservaDTOJson()
-
+        map_reserva = MapeadorRutaDTOJson()
         return map_reserva.dto_a_externo(query_resultado.resultado)
     else:
         return [{'message': 'GET!'}]

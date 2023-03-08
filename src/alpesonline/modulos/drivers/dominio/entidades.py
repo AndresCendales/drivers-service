@@ -25,7 +25,7 @@ class Ruta(AgregacionRaiz):
     estado: ov.EstadoRuta = field(default=ov.EstadoRuta.SIN_ASIGNAR)
     ordenes: list[ov.Orden] = field(default_factory=list[ov.Orden])
     zona: ov.Zona = field(default=ov.ZonaEnum.NORTE)
-    hora_salida: datetime.datetime = field(default_factory=None)
+    hora_salida: datetime.datetime = field(default=datetime.datetime.now())
     tiempo_estimado: int = field(default=0)
 
     def asignar_ruta(self, ruta: Ruta):

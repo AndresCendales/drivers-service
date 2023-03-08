@@ -18,5 +18,4 @@ class VistaRuta(Vista):
         if id_cliente:
             params['id_cliente'] = str(id_cliente)
 
-        # TODO Convierta ReservaDTO a Reserva y valide que la consulta es correcta
         return db.session.query(RutaDTO).filter_by(**params)
