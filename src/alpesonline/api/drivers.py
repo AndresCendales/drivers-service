@@ -27,19 +27,8 @@ def asignar_ruta_comando():
 
         comando = AsignarRuta(ruta=ruta_dto)
 
-        # TODO Reemplaze es todo código sincrono y use el broker de eventos para propagar este comando de forma asíncrona
-        # Revise la clase Despachador de la capa de infraestructura
         ejecutar_commando(comando)
 
         return Response('{}', status=202, mimetype='application/json')
     except ExcepcionDominio as e:
         return Response(json.dumps(dict(error=str(e))), status=400, mimetype='application/json')
-
-@bp.route('/rutas/<id>', methods=('GET',))
-def dar_reserva_usando_query(id=None):
-    if id:
-        query_resultado = ejecutar_query(ObtenerRutaAsignada(id))
-        map_reserva = MapeadorRutaDTOJson()
-        return map_reserva.dto_a_externo(query_resultado.resultado)
-    else:
-        return [{'message': 'GET!'}]

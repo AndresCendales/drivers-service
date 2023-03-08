@@ -103,9 +103,6 @@ python -m grpc_tools.protoc -Iprotos --python_out=./pb2py --pyi_out=./pb2py --gr
 
 Desde el directorio principal ejecute el siguiente comando.
 
-```bash
-docker build . -f adaptador.Dockerfile -t aeroalpes/adaptador
-```
 
 ### Ejecutar contenedora (sin compose)
 
@@ -127,10 +124,6 @@ python src/notificaciones/main.py
 ### Crear imagen Docker
 
 Desde el directorio principal ejecute el siguiente comando.
-
-```bash
-docker build . -f notificacion.Dockerfile -t aeroalpes/notificacion
-```
 
 ### Ejecutar contenedora (sin compose)
 

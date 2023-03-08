@@ -138,20 +138,6 @@ services:
       - PULSAR_ADDRESS=broker
     ports:
       - "5000:5000"
-  adaptador:
-    image: "aeroalpes/adaptador"
-    profiles: ["aeroalpes", "monolito"]
-    container_name: adaptador
-    hostname: adaptador
-    depends_on:
-      - aeroalpes
-    networks:
-      - sidecar
-    environment:
-      - AEROALPES_ADDRESS=aeroalpes
-      - PULSAR_ADDRESS=broker
-    ports:
-      - "50051:50051"
 
   # Servicios de Notificación
   notificacion:
